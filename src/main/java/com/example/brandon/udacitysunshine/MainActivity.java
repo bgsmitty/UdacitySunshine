@@ -1,16 +1,19 @@
 package com.example.brandon.udacitysunshine;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -51,13 +54,44 @@ public class MainActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        // Listing all variables for reference within the PlaceholderFragment Class
+        private ArrayAdapter<String> mForecastAdapter;
+
         public PlaceholderFragment() {
         }
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
+
+            // Make sure rootView is initialize before the listview which will reference it
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            //Declaring String array to represent data
+            String[] forecastArray = {
+                    "Today - Sunny - 88/63",
+                    "Tomorrow - Foggy - 70/40",
+                    "Weds -Cloudy - 72/63",
+                    "Thurs - Asteroids - 75/65",
+                    "Fri - Heavy Rain - 65/56",
+                    "Sat - HELP TRAPPED IN WEATHERSTATION - 60/51",
+                    "Sun - Sunny - 80/68"
+            };
+
+
+            List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
+            mForecastAdapter = new ArrayAdapter<String>(
+                    // The current context (this fragment's parent activity
+                    getActivity(),
+                    // ID of list item layout
+                    R.layout.list_item_forecast,
+                    // ID of the textview to populate
+                    R.id.list_item_forecast_textview,
+                    //Forecast data
+                    weekForecast
+            );
+
+            ListView forecastListView = (ListView) rootView.findViewById(R.id.listview_forecast);
+            forecastListView.setAdapter(mForecastAdapter);
+
             return rootView;
         }
     }
