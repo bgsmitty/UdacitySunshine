@@ -4,6 +4,7 @@ package com.example.brandon.udacitysunshine;
  * Created by brandon on 7/16/14.
  */
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -123,6 +124,14 @@ public class ForecastFragment extends Fragment {
 
         return rootView;
 
+    }
+
+    public class FetchWeatherTask extends AsyncTask<URL, Integer, Long> {
+
+        @Override
+        protected Long doInBackground(URL... params) {
+            return null;
+        }
     }
 
 }
