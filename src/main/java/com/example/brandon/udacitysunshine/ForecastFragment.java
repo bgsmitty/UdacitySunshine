@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * A placeholder fragment containing a simple view.
  */
-public static class ForecastFragment extends Fragment {
+public class ForecastFragment extends Fragment {
 
     // Listing all variables for reference within the PlaceholderFragment Class
     private ArrayAdapter<String> mForecastAdapter;
